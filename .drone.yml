@@ -7,7 +7,7 @@ steps:
       - name: mavenrep
         path: /root/.m2
     when:
-      branch: master
+      branch: main
       event: [ push ]
   - name: docker
     image: plugins/docker
