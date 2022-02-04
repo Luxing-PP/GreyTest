@@ -9,8 +9,8 @@ steps:
     when:
       branch: main
       event: [ push ]
-  - name: docker
-    image: plugins/docker
+  - name: run
+    image: 
     settings:
       username: 仓储登录用户
       password: 密码
@@ -18,7 +18,7 @@ steps:
       insecure: true
       repo: 仓储路径
       build_args:
-        - JAR_FILE: *.jar
+        - JAR_FILE : *.jar
     when:
       branch: main
       event: [ push ]
