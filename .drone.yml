@@ -15,9 +15,8 @@ steps:
       username: 仓储登录用户
       password: 密码
       registry: 仓储服务地址
-      insecure: true是否是不安全仓储，一般来说http协议的地址要设置为true
+      insecure: true
       repo: 仓储路径
-      tags: latest
       build_args:
         - JAR_FILE: *.jar
     when:
