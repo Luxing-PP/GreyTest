@@ -1,0 +1,25 @@
+steps:
+  - name: build
+    image: maven:3.6.2-jdk-8
+    commands:
+      - mvn clean package
+    volumes:
+      - name: mavenrep
+        path: /root/.m2
+    when:
+      branch: master
+      event: [ push ]
+  - name: docker
+    image: plugins/docker
+    settings:
+      username: 仓储登录用户
+      password: 密码
+      registry: 仓储服务地址
+      insecure: true是否是不安全仓储，一般来说http协议的地址要设置为true
+      repo: 仓储路径
+      tags: latest
+      build_args:
+        - JAR_FILE: *.jar
+    when:
+      branch: master
+      event: [ push ]
