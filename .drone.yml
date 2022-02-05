@@ -10,8 +10,7 @@ steps:
     when:
       branch: main
       event: [ push ]
-  - name: run
-    image: jdk 
+  - name: run 
     commands:
       - java -jar version_hit-0.0.1-SNAPSHOT.jar 
     when:
