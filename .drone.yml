@@ -10,8 +10,17 @@ steps:
     when:
       branch: main
       event: [ push ]
-  - name: run 
+  - name: docker
+    image: plugins/docker
+    settings:
+        repo: garzhi/drone-demo
+        use_cache: true
+        username: root
+        password: Mm25613891
+        tags:
+          - latest
     commands:
+      - docker build -t garzhi/drone-demo
       - java -jar version_hit-0.0.1-SNAPSHOT.jar 
     when:
       branch: main
