@@ -1,9 +1,11 @@
 kind: pipeline
+name: deploy_Garzhi
 steps:
   - name: build
     image: maven:3.6.2-jdk-8
     commands:
       - mvn clean package
+      - cp ./target/version_hit-0.0.1-SNAPSHOT.jar /root/Resourse/
     volumes:
       - name: mavenrep
         path: /root/.m2
@@ -12,16 +14,9 @@ steps:
       event: [ push ]
   - name: docker
     image: plugins/docker
-    settings:
-        repo: garzhi/drone-demo
-        use_cache: true
-        username: root
-        password: Mm25613891
-        tags:
-          - latest
     commands:
-      - docker build -t garzhi/drone-demo
-      - java -jar version_hit-0.0.1-SNAPSHOT.jar 
+      - docker build -t garzhi/web-demo:6 /root/Resourse/
+      - docker run -d --name web-demo -p 8081:8080 garzhi/web-demo:6 
     when:
       branch: main
       event: [ push ]
