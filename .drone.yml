@@ -15,6 +15,7 @@ steps:
         path: /home
     commands:
       - mvn clean package -Dmaven.test.skip=true
+      - rm -f /home/*.jar Dockerfile
       - cp target/*.jar /home
       - cp Dockerfile /home
     when:
@@ -30,7 +31,9 @@ steps:
       port: 22
       script:
         - cd /root/DockerWorkbench/
+        - docker image rm web-demo:7 || true
         - docker build -t web-demo:7 .
+        - (docker container stop web-demo && docker container rm web-demo) || true
         - docker run -d -p 8081:8080 --name web-demo web-demo:7
     when:
       branch: main
