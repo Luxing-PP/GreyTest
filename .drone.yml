@@ -32,3 +32,6 @@ steps:
        - cd /root/DockerWorkbench/
        - docker build -t web-demo:7 .
        - docker run -d -p 8081:8080 --name web-demo web-demo:7
+    when:
+      branch: main
+      event: [push]
