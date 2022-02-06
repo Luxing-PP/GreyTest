@@ -24,10 +24,10 @@ steps:
   - name: ssh-deploy
     image: appleboy/drone-ssh:1.5.7
     settings:
-       - host:1.116.220.137 
-         username:root
-         password:Mm25613891
-         port:22
+       - host=1.116.220.137 
+         username=root
+         password=Mm25613891
+         port=22
     script:
       - cd /root/DockerWorkbench/
       - docker build -t web-demo:7 .
