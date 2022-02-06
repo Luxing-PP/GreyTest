@@ -14,11 +14,11 @@ steps:
   - name: run
     image: plugins/docker
     settings:
-        insecure: true
-        repo: garzhi/web-demo:7
-        tags: latest
-        build_args:
-            - JAR_FILE: *.jar           
+      insecure: true
+      repo: garzhi/web-demo:7
+      tags: latest
+      build_args:
+        - JAR_FILE: *.jar           
     when:
       branch: main
       event: [ push ]
