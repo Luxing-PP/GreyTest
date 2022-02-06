@@ -1,14 +1,34 @@
 kind: pipeline
-name: deploy_Garzhi
+type: docker
+name: SpringDeploy_GarZhi
+
+
 steps:
   - name: build
     image: garzhi/web-demo:6
-    commands:
-      - mvn clean package
-      - java -jar target/*.jar
     volumes:
-      - name: mavenrep
+      # maven 构建缓存
+      - name: cache
         path: /root/.m2
+      # 数据
+      - name: data
+        path: /root/DockerWorkbench/
+    commands:
+      - mvn clean package -Dmaven.test.skip=true
+      - cp target/*.jar /root/DockerWorkbench/
+      - cp Dockerfile /root/DockerWorkbench/
     when:
       branch: main
       event: [push]
+   
+   - name: ssh-deploy
+     image: appleboy/drone-ssh:1.5.7
+     settings:
+        - host:1.116.220.137 
+          username:root
+          password:Mm25613891
+          port:22
+     script:
+       - cd /root/DockerWorkbench/
+       - docker build -t web-demo:7 .
+       - docker run -d -p 8081:8080 --name web-demo web-demo:7
