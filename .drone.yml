@@ -12,13 +12,15 @@ steps:
       branch: main
       event: [push]
   - name: run
-    image: garzhi/web-demo:6
-    ports:
-        - "8081:8080"
-    commands:
-       - java -jar target/version_hit-0.0.1-SNAPSHOT.jar
-#      - docker build -t garzhi/web-demo:6 /root/Resourse/
-#      - docker run -d --name web-demo -p 8081:8080 garzhi/web-demo:6 
+    image: plugins/docker
+    settings:
+        username: root
+        password: Mm25613891
+        insecure: true
+        repo: garzhi/web-demo:7
+        tags: latest
+        build_args:
+                - JAR_FILE: *.jar           
     when:
       branch: main
       event: [ push ]
