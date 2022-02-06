@@ -64,7 +64,7 @@ public class RuleVO {
         this.platform = platform;
     }
 
-    public RuleVO( Integer aid,String platform, String download_url, String update_version_code, String md5,  String max_update_version_code, String min_update_version_code, Integer max_os_api, Integer min_os_api, Integer cpu_arch, String channel, String title, String update_tips) {
+    public RuleVO( Integer aid,String platform, String download_url, String update_version_code, String md5,  String min_update_version_code, String max_update_version_code, Integer max_os_api, Integer min_os_api, Integer cpu_arch, String channel, String title, String update_tips) {
         this.aid=aid;
         this.platform = platform;
         this.download_url = download_url;

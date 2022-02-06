@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<h2>添加规则</h2>
+<form method="get" action="http://localhost:8080/version/rule">
+    <p>aid: <input type="text" name="aid"></p>
+    <p>platform: <input type="text" name="platform"> </p>
+    <p>download_url: <input type="text" name="download_url"></p>
+    <p>update_version_code: <input type="text" name="update_version_code"></p>
+    <p>md5: <input type="text" name="md5"></p>
+    <p>min_update_version_code: <input type="text" name="min_update_version_code"></p>
+    <p>max_update_version_code: <input type="text" name="max_update_version_code"></p>
+    <p>max_os_api: <input type="text" name="max_os_api"></p>
+    <p>min_os_api: <input type="text" name="min_os_api"></p>
+    <p>cpu_arch: <input type="text" name="cpu_arch"></p>
+    <p>channel: <input type="text" name="channel"></p>
+    <p>title: <input type="text" name="title"></p>
+    <p>update_tips: <input type="text" name="update_tips"></p>
+    <p> <input type="submit" value="提交"> <input type="reset"></p>
+</form>
+
+<hr>
+<h2>添加白名单</h2>
+<form method="get" action="http://localhost:8080/version/ID">
+    <p>device_id_lists <input type="text" name="ids">
+    <p> <input type="submit" value="提交"> <input type="reset"></p>
+</form>
+
+<hr>
+<h2>删除规则</h2>
+<form method="get" action="http://localhost:8080/version/delete">
+    <p>id <input type="text" name="id">
+    <p> <input type="submit" value="提交"> <input type="reset"></p>
+</form>
+<hr>
+<h2>暂停、恢复规则</h2>
+<form method="get" action="http://localhost:8080/version/suspend">
+    <p>id <input type="text" name="id">
+    <p>status <input type="text" name="status">
+    <p> <input type="submit" value="提交"> <input type="reset"></p>
+</form>
+
+
+<hr>
+<h2>匹配规则</h2>
+<p>version: <input id="version"> </p>
+<p>device_platform: <input id="device_platform" > </p>
+<p>device_id: <input id="device_id"></p>
+<p>os_api: <input id="os_api"></p>
+<p>channel: <input id="channel"></p>
+<p>update_version_code: <input id="update_version_code"></p>
+<p>aid: <input id="aid"></p>
+<p>cpu_arch: <input id="cpu_arch"></p>
+<p> <input type="submit" value="提交" id="submit"> </p>
+<p id="result"></p>
+<script>
+    $('#submit').click(function (){
+        axios.post("http://localhost:8080/version/hit",{
+            'version':document.getElementById("version").value,
+            'device_platform':document.getElementById("device_platform").value,
+            'device_id':document.getElementById("device_id").value,
+            'os_api':document.getElementById("os_api").value,
+            'channel':document.getElementById("channel").value,
+            'update_version_code':document.getElementById("update_version_code").value,
+            'aid':document.getElementById("aid").value,
+            'cpu_arch':document.getElementById("cpu_arch").value
+        }).then(function(data){
+            console.log(data)
+            document.getElementById("result").innerText=JSON.stringify(data.data.hitReturnVO);
+        })
+    })
+</script>
+</body>
+</html>

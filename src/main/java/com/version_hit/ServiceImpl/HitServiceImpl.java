@@ -23,11 +23,15 @@ public class HitServiceImpl implements HitService {
     HashMap<String, Integer> white_sheet=new HashMap<String, Integer>();
     List<HitPO> list=new ArrayList<>();
     Global global=new Global();
-    
+
+
+
+
     @Override
     public Response ifHit(HitVO hitVO) {
+
         if(list.size()==0||global.rules_haschange==true){
-            Global.rules_haschange=false;
+            global.rules_haschange=false;
             list=hitMapping.getRuleList();
         }
         for (HitPO hitPO : list) {
@@ -60,7 +64,7 @@ public class HitServiceImpl implements HitService {
     private boolean checkDeviceIdList(String device_id) {
         //如果哈希表没有生成，从白名单数据库里获取白名单并生成白名单哈希表
         if(white_sheet.size()==0||global.device_id_haschange==true){
-            Global.device_id_haschange=false;
+            global.device_id_haschange=false;
             List<String> device_id_list= hitMapping.getDevice_Id();
             for(String s:device_id_list){
                 white_sheet.put(s,1);

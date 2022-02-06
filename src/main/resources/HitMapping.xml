@@ -20,7 +20,7 @@
     </resultMap>
 
     <select id="getRuleList" resultMap="ResultMap">
-        select * from rules;
+        select * from `rules`;
     </select>
 
     <select id="findDevice_Id" resultType="java.lang.Integer"  parameterType="java.lang.String">

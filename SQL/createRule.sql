@@ -23,11 +23,11 @@ CREATE TABLE if not exists `rules`(
     PRIMARY KEY (`id`)
 )AUTO_INCREMENT=5;
 # 同一个APP 测试渠道和CPU架构
-INSERT INTO `rules` VALUES (0,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.1.4','4','1','32','渠道A','Title','TIPS',true);
-INSERT INTO `rules` VALUES (1,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.4.2','4','1','64','渠道A','渠道A的64通用解','TIPS',true);
-INSERT INTO `rules` VALUES (2,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.4.2','4','1','32','渠道A','渠道A的32通用解','TIPS',true);
-INSERT INTO `rules` VALUES (3,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.4.2','4','1','64','渠道B','渠道B的64通用解','TIPS',true);
-INSERT INTO `rules` VALUES (4,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.4.2','4','1','32','渠道B','渠道B的32通用解','TIPS',true);
+# INSERT INTO `rules` VALUES (0,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.1.4','4','1','32','渠道A','Title','TIPS',true);
+# INSERT INTO `rules` VALUES (1,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.4.2','4','1','64','渠道A','渠道A的64通用解','TIPS',true);
+# INSERT INTO `rules` VALUES (2,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.4.2','4','1','32','渠道A','渠道A的32通用解','TIPS',true);
+# INSERT INTO `rules` VALUES (3,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.4.2','4','1','64','渠道B','渠道B的64通用解','TIPS',true);
+# INSERT INTO `rules` VALUES (4,1,'IOS','apk1.0.url','感觉没用啊','md5','8.1.3','8.4.2','4','1','32','渠道B','渠道B的32通用解','TIPS',true);
 
 CREATE table IF NOT EXISTS `device_id_list`(
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -36,9 +36,9 @@ CREATE table IF NOT EXISTS `device_id_list`(
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO `device_id_list` (device_id) VALUES ('BBBB-1234');
+# INSERT INTO `device_id_list` (device_id) VALUES ('BBBB-1234');
 
-# ALTER TABLE device_id_list ADD INDEX index_name(device_id(5));
+ALTER TABLE device_id_list ADD INDEX index_name(device_id(3));
 # CREATE table if not exists `rule_condition`(
 #     `id` int unsigned NOT NULL AUTO_INCREMENT,
 #     `hit_times` int default 0,
