@@ -27,7 +27,8 @@ steps:
     settings:
       host: 1.116.220.137
       username: root
-      password: Mm25613891
+      password:
+        from_secret: password
       port: 22
       script:
         - cd /root/DockerWorkbench/
