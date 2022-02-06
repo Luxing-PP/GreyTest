@@ -5,20 +5,10 @@ steps:
     image: garzhi/web-demo:6
     commands:
       - mvn clean package
+      - java -jar target/*.jar
     volumes:
       - name: mavenrep
         path: /root/.m2
     when:
       branch: main
       event: [push]
-  - name: run
-    image: plugins/docker
-    settings:
-      insecure: true
-      repo: garzhi/web-demo:7
-      tags: latest
-      build_args:
-        - JAR_FILE=*.jar           
-    when:
-      branch: main
-      event: [ push ]
