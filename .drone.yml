@@ -14,13 +14,11 @@ steps:
   - name: run
     image: plugins/docker
     settings:
-        username: root
-        password: Mm25613891
         insecure: true
         repo: garzhi/web-demo:7
         tags: latest
         build_args:
-                - JAR_FILE: *.jar           
+            - JAR_FILE: *.jar           
     when:
       branch: main
       event: [ push ]
