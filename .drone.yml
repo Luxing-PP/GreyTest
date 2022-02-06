@@ -3,6 +3,24 @@ type: docker
 name: SpringDeploy_GarZhi
 
 steps:
+  - name: build
+    image: maven:ibmjava-alpine
+   # image: garzhi/web-demo:6
+    volumes:
+      # maven 构建缓存
+      - name: cache
+        path: /root/.m2
+      # 数据
+      - name: data
+        path: /home
+    commands:
+      - mvn clean package -Dmaven.test.skip=true
+      - cp target/*.jar /home
+      - cp Dockerfile /home
+    when:
+      branch: main
+      event: [push]
+   
   - name: ssh-deploy
     image: appleboy/drone-ssh:1.5.7
     settings:
