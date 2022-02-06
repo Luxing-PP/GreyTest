@@ -11,11 +11,11 @@ steps:
         path: /root/.m2
       # 数据
       - name: data
-        path: /root/DockerWorkbench/
+        path: /home
     commands:
       - mvn clean package -Dmaven.test.skip=true
-      - cp target/*.jar /root/DockerWorkbench/
-      - cp Dockerfile /root/DockerWorkbench/
+      - cp target/*.jar /home
+      - cp Dockerfile /home
     when:
       branch: main
       event: [push]
@@ -33,3 +33,16 @@ steps:
     when:
       branch: main
       event: [push]
+
+
+# 挂载的主机卷，可以映射到docker容器中
+volumes:
+   # maven构建缓存
+   - name: cache
+     host:
+       path: /var/lib/cache
+   # maven构建后与宿主机通信的共享目录
+   - name: data
+     host:
+       path: /root/DockerWorkbench/
+
