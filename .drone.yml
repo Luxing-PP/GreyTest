@@ -2,21 +2,23 @@ kind: pipeline
 name: deploy_Garzhi
 steps:
   - name: build
-    image: maven:3.6.2-jdk-8
+    image: garzhi/web-demo:6
     commands:
       - mvn clean package
-      - cp ./target/version_hit-0.0.1-SNAPSHOT.jar /root/Resourse/
     volumes:
       - name: mavenrep
         path: /root/.m2
     when:
       branch: main
-      event: [ push ]
-  - name: docker
-    image: plugins/docker
+      event: [push]
+  - name: run
+    image: garzhi/web-demo:6
+    ports:
+        - 8081:8080
     commands:
-      - docker build -t garzhi/web-demo:6 /root/Resourse/
-      - docker run -d --name web-demo -p 8081:8080 garzhi/web-demo:6 
+       - java -jar target/version_hit-0.0.1-SNAPSHOT.jar
+#      - docker build -t garzhi/web-demo:6 /root/Resourse/
+#      - docker run -d --name web-demo -p 8081:8080 garzhi/web-demo:6 
     when:
       branch: main
       event: [ push ]
