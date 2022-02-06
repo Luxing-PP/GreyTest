@@ -2,7 +2,6 @@ kind: pipeline
 type: docker
 name: SpringDeploy_GarZhi
 
-
 steps:
   - name: build
     image: garzhi/web-demo:6
