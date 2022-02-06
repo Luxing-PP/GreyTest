@@ -15,7 +15,7 @@ steps:
         path: /home
     commands:
       - mvn clean package -Dmaven.test.skip=true
-      - rm -f /home/*.jar Dockerfile
+      - (rm -f /home/*.jar /home/Dockerfile) || true
       - cp target/*.jar /home
       - cp Dockerfile /home
     when:
